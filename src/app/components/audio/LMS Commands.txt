@@ -1,0 +1,167 @@
+SOURCE: https://github.com/LMS-Community/slimserver/blob/public/9.0/Slim/Control/Request.pm
+
+=head1 COMMANDS & QUERIES LIST
+ This table lists all supported commands and queries with their parameters.
+ C     P0             P1                          P2                          P3               P4       P5
+#####################################################################################################################################################################
+
+=head2 GENERAL
+
+ N    debug           <debugflag>                 <OFF|FATAL|ERROR|WARN|INFO|DEBUG|?|>
+ N    pref            <prefname>                  <prefvalue|?>
+ N    version         ?
+ N    stopserver
+
+=head2 DATABASE
+
+ N    rescan          <|playlists|?>
+ N    rescanprogress  <tagged parameters>
+ N    wipecache
+ N    pragma          <pragma>
+
+ N    albums          <startindex>                <numitems>                  <tagged parameters>
+ N    artists         <startindex>                <numitems>                  <tagged parameters>
+ N    genres          <startindex>                <numitems>                  <tagged parameters>
+ N    info            total                       genres|artists|albums|songs ?
+ N    songinfo        <startindex>                <numitems>                  <tagged parameters> (DEPRECATED)
+ N    titles          <startindex>                <numitems>                  <tagged parameters>
+ N    years           <startindex>                <numitems>                  <tagged parameters>
+ N    musicfolder     <startindex>                <numitems>                  <tagged parameters>
+
+ N    playlists       <startindex>                <numitems>                  <tagged parameters>
+ N    playlists       tracks                      <startindex>                <numitems>       <tagged parameters>
+ N    playlists       edit                        <tagged parameters>
+ N    playlists       new                         <tagged parameters>
+ N    artwork         <tagged parameters>
+
+ N    rating          <item>                      <rating>
+ N    rating          <item>                      ?
+
+=head2 PLAYERS
+
+
+ Y    alarm           <tagged parameters>
+ Y    button          <buttoncode>
+ Y    connect         <ip>
+ Y    client          forget
+ Y    display         <line1>                     <line2>                       <duration>
+ Y    ir              <ircode>                    <time>
+ Y    mixer           volume                      <0..100|-100..+100|?>
+ Y    mixer           bass                        <0..100|-100..+100|?>
+ Y    mixer           treble                      <0..100|-100..+100|?>
+ Y    mixer           pitch                       <80..120|-100..+100|?>
+ Y    mixer           muting                      <|?>
+ Y    name            <newname|?>
+ Y    playerpref      <prefname>                  <prefvalue|?>
+ Y    power           <0|1|?|>
+ Y    sleep           <0..n|?>
+ Y    sync            <playerindex|playerid|-|?>
+ Y    mode            ?
+ Y    irenable        <0|1|?|>
+
+ Y    alarms          <startindex>                <numitems>                  <tagged parameters>
+ Y    signalstrength  ?
+ Y    connected       ?
+ Y    display         ?                           ?
+ Y    displaynow      ?                           ?
+ Y    displaystatus   <tagged parameters>
+ Y    show
+ N    player          count                       ?
+ N    player          ip                          <index or ID>               ?
+ N    player          id|address                  <index or ID>               ?
+ N    player          name                        <index or ID>               ?
+ N    player          model                       <index or ID>               ?
+ N    player          isplayer                    <index or ID>               ?
+ N    player          displaytype                 <index or ID>               ?
+ N    players         <startindex>                <numitems>                  <tagged parameters>
+
+
+=head2 PLAYLISTS
+
+ Y    pause           <0|1|>                      <fadeInSecs> (only for resume)
+ Y    play            <fadeInSecs>
+ Y    playlist        add|append                  <item> (item can be a song, playlist or directory) <title> (override)
+ Y    playlist        addalbum                    <genre>                     <artist>         <album>  <songtitle>
+ Y    playlist        addtracks                   <searchterms>
+ Y    playlist        clear
+ Y    playlist        delete                      <index>
+ Y    playlist        deletealbum                 <genre>                     <artist>         <album>  <songtitle>
+ Y    playlist        deleteitem                  <item> (item can be a song, playlist or directory)
+ Y    playlist        deletetracks                <searchterms>
+ Y    playlist        index|jump                  <index|?>                   <fadeInSecs>     <0|1> (noplay)
+ Y    playlist        insert|insertlist           <item> (item can be a song, playlist or directory)
+ Y    playlist        insertalbum                 <genre>                     <artist>         <album>  <songtitle>
+ Y    playlist        inserttracks                <searchterms>
+ Y    playlist        loadalbum|playalbum         <genre>                     <artist>         <album>  <songtitle>
+ Y    playlist        loadtracks                  <searchterms>
+ Y    playlist        move                        <fromindex>                 <toindex>
+ Y    playlist        play|load|resume            <item> (item can be a song, playlist or directory) <title> (override) <fadeInSecs>
+ Y    playlist        playtracks                  <searchterms>
+ Y    playlist        repeat                      <0|1|2|?|>
+ Y    playlist        shuffle                     <0|1|2|?|>
+ Y    playlist        save                        <name>
+ Y    playlist        zap                         <index>
+ Y    playlistcontrol <tagged parameters>
+ Y    stop
+ Y    time            <0..n|-n|+n|?>
+
+ Y    artist          ?
+ Y    album           ?
+ Y    duration        ?
+ Y    genre           ?
+ Y    title           ?
+ Y    path            ?
+ Y    current_title   ?
+ Y    remote          ?
+
+ Y    playlist        tracks                      ?
+
+ Y    playlist        genre                       <index>                     ?
+ Y    playlist        artist                      <index>                     ?
+ Y    playlist        album                       <index>                     ?
+ Y    playlist        title                       <index>                     ?
+ Y    playlist        duration                    <index>                     ?
+ Y    playlist        path                        <index>                     ?
+ Y    playlist        remote                      <index>                     ?
+
+ Y    playlist        name                        ?
+ Y    playlist        url                         ?
+ Y    playlist        modified                    ?
+ Y    playlist        playlistsinfo               <tagged parameters>
+
+ COMPOUND
+
+ N    serverstatus    <startindex>                <numitems>                  <tagged parameters>
+ Y    status          <startindex>                <numitems>                  <tagged parameters>
+
+
+ DEPRECATED (BUT STILL SUPPORTED)
+ Y    mode            <play|pause|stop>
+ Y    gototime        <0..n|-n|+n|?>
+ N    playlisttracks  <startindex>                <numitems>                  <tagged parameters>
+
+
+=head2 NOTIFICATION
+
+ The following 'terms' are used for notifications
+
+ Y    client          disconnect
+ Y    client          new
+ Y    client          reconnect
+ Y    client          upgrade_firmware
+ Y    playlist        load_done
+ Y    playlist        newsong                     <current_title>
+ Y    playlist        open                        <url>
+ Y    playlist        sync
+ Y    playlist        cant_open                   <url>                      <error>
+ Y    playlist        pause                       <0|1>
+ Y    playlist        stop
+ N    rescan          done
+ N    library         changed               	  <0|1>
+ Y    unknownir       <ircode>                    <timestamp>
+ N    prefset         <namespace>                 <prefname>                  <newvalue>
+ Y    alarm           sound                       <id>
+ Y    alarm           end                         <id>
+ Y    alarm           snooze                      <id>
+ Y    alarm           snooze_end                  <id>
+ Y    newmetadata
